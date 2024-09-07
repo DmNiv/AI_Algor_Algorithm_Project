@@ -21,8 +21,10 @@ def elevacao_estocastica():
     tabuleiro = [randint(0, 7) for i in range(8)]
     colisoes_atuais = calcular_colisoes(tabuleiro)
     iteracoes = 0
+    iteracoes2 = 0
     fitness = 500
     while iteracoes < fitness:
+        iteracoes2 += 1
         vizinho = vizinho_aleatorio(tabuleiro)
         colisoes_vizinho = calcular_colisoes(vizinho)
         if colisoes_vizinho < colisoes_atuais:
@@ -31,6 +33,7 @@ def elevacao_estocastica():
             iteracoes = 0
         else:
             iteracoes += 1
+        if colisoes_atuais == 0:
+            break
         print(tabuleiro, colisoes_atuais, iteracoes)
-        sleep(0.05)
-    return tabuleiro, colisoes_atuais
+    return tabuleiro, colisoes_atuais, iteracoes2
